@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form onsubmit="onSubmit(event)">
+    <input type="date" name="input">
+    <button type="submit">submit</button>
+</form>
+hello <ins>I'm inserted</ins>
+
+<pre>
+    hello
+    I'm lisa.
+        this is white     space
+</pre>
+
+<script>
+    var onSubmit = function (event) {
+        event.preventDefault();
+        const val = new Date(document.getElementsByName('input')[0].value);
+        console.log(typeof val);
+        console.log(val);
+    }
+</script>
+</body>
+</html>

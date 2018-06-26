@@ -1,0 +1,96 @@
+.border{
+  width: 540px;
+  font-size: 0;
+  position: absolute;
+  left: -25px;
+  z-index: 10;
+}
+.pricingTable{
+  text-align: center;
+  background: #fcfcfc;
+  padding-top: 5px;
+  transition: all 0.5s ease-in-out 0s;
+}
+.pricingTable > .pricingTable-header{
+  color:#fff;
+  background: rgb(191,179,155);
+  cursor: pointer;
+  height: 190px;
+  position: relative;
+  top: 80px;
+  transition: all 0.5s ease 0s;
+}
+.pricingTable > .pricingTable-header:after{
+  content: "";
+  border-bottom: 40px solid #fcfcfc;
+  border-left: 263px solid transparent;
+  position: absolute;
+  right:0px;
+  bottom: 0px;
+}
+.pricingTable:hover .pricingTable-header{
+  height: 230px;
+  top: 100px;
+  transition: all 0.5s ease 0s;
+}
+.pricingTable-header > .heading{
+  display: block;
+  padding: 20px 0;
+}
+.heading > h3{
+  margin: 0;
+
+}
+.pricingTable-header > .price-value{
+  font-family: 'Cookie', cursive;
+  font-size: 60px;
+  line-height: 60px;
+  position: relative;
+  top:70px;
+}
+.pricingTable-header > .price-value > .mo{
+  font-size: 20px;
+  font-family: 'Abril Fatface', cursive;
+  display: block;
+}
+.pricingTable > .pricingContent{
+  font-family: 'Abril Fatface', cursive;
+  text-align: center;
+  color:rgb(92, 39, 12)
+}
+.pricingTable > .pricingContent > ul{
+  list-style: none;
+  padding-top: 100px;
+}
+.pricingTable > .pricingContent > ul > li{
+  padding: 15px 0;
+  border-bottom: 1px solid #fff;
+}
+.pricingTable > .pricingContent > ul > li:last-child{
+  border: 0px none;
+}
+.pricingTable-sign-up{
+  padding: 30px 0;
+}
+
+@media screen and (max-width: 1200px){
+  .pricingTable > .pricingTable-header:after{
+    border-left: 215px solid transparent;
+  }
+}
+@media screen and (max-width: 990px){
+  .pricingTable{
+    margin-bottom: 20px;
+  }
+  .pricingTable > .pricingTable-header:after{
+    border-left: 349px solid transparent;
+  }
+}
+@media screen and (max-width: 480px){
+  .pricingTable{
+    overflow: hidden;
+  }
+  .pricingTable > .pricingTable-header:after {
+    border-left: 459px solid rgba(0, 0, 0, 0);
+  }
+}

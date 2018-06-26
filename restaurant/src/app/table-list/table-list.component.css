@@ -1,0 +1,14 @@
+#time{
+  width: 250px;
+  height: 40px;
+  height: 2.5rem;
+  padding: 0 16px;
+  padding: 0 1rem;
+  -moz-border-radius: 2rem;
+  border-radius: 2rem;
+  border: 1px solid #d7dad7;
+  cursor: pointer;
+}
+#icon{
+  margin-left: -25px;
+}

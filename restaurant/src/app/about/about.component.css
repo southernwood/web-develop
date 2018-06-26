@@ -1,0 +1,139 @@
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+.main{
+  width: 100%;
+  position: absolute;
+  margin-top: -20px;
+  background: url(../../assets/img/snitch.jpg) no-repeat fixed;
+  background-size: cover;
+}
+.paper{
+  max-width: 700px;
+  margin: 10px auto;
+  position: relative;
+  background-color: #fafafa;
+  border: 1px solid #fafafa;
+  -webkit-box-shadow: 0 0 4px rgba(250,197,7,0.5), inset 0 0 50px rgba(250,197,7,0.1);
+  -moz-box-shadow: 0 0 4px rgba(250,197,7,0.5), inset 0 0 50px rgba(250,197,7,0.1);
+  box-shadow: 0 0 5px rgba(250,197,7,0.5),  inset 0 0 50px rgba(250,197,7,0.1);
+}
+h1 {
+  margin-top: 0;
+}
+p{
+  font-size: 1.2em;
+}
+.button-header{
+  max-width: 700px;
+  margin: 0px auto 0;
+  text-align: right;
+  padding: 5px;
+}
+.button-header img{
+  filter: brightness(75%);
+  cursor: pointer;
+}
+.button-header img:hover{
+  filter: brightness(95%);
+}
+.button-header img:active{
+  filter: brightness(100%);
+}
+
+.info-form{
+  margin:auto;
+  max-width: 700px;
+  padding: 10px 20px;
+  text-align: justify;
+}
+
+.site-wrap {
+  max-width: 700px;
+  margin: 0px auto;
+  padding:10px 30px;
+  text-align: justify;
+}
+input, textarea{
+  width: 400px;
+  font-family: 'Abril Fatface', cursive;
+  box-sizing: border-box;
+  background: transparent;
+  border: none;
+  color: rgba(147,147,147,0.75);
+  border-bottom: 1px dashed black;
+  animation: border-color 5s infinite ease-in;
+  -webkit-animation: border-color 5s infinite ease-in-out;
+  padding: 0;
+}
+input{
+  height: 100%;
+}
+input:focus,textarea:focus{
+  color: black;
+}
+
+input[disabled]{
+  border: hidden;
+  color: rgba(0, 0, 0, 0.8);
+}
+
+h1 input{
+  font-family: 'Sedgwick Ave Display', cursive;
+  font-size: 50px;
+
+}
+textarea[disabled]{
+  border: transparent;
+  font-family: 'Abril Fatface', cursive;
+  color: rgba(0, 0, 0, 0.8);
+  cursor: default;
+}
+@-webkit-keyframes border-color {
+  0% {border-bottom-color: black}
+  25% {border-bottom-color: gray}
+  50%{border-bottom-color: gainsboro}
+  75%{border-bottom-color: gray}
+  100%{border-bottom-color: black}
+}
+
+/* Standard syntax */
+@keyframes border-color {
+  0% {border-bottom-color: black}
+  25% {border-bottom-color: gray}
+  50%{border-bottom-color: gainsboro}
+  75%{border-bottom-color: gray}
+  100%{border-bottom-color: black}
+}
+
+.align-left {
+  float:left;
+  margin-right:20px;
+}
+
+.align-right {
+  float:right;
+  margin-left:20px;
+}
+
+.slide-in {
+  opacity:0;
+  transition:all 1s;
+}
+
+.align-left.slide-in {
+  transform:translateX(-30%) scale(0.95);
+}
+.align-right.slide-in {
+  transform:translateX(30%) scale(0.95);
+}
+
+.slide-in.active {
+  opacity:1;
+  transform:translateX(0%) scale(1);
+}
+.loading{
+  position: absolute;
+  top: 150px;
+  left: 150px;
+}

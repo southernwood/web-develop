@@ -1,0 +1,38 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-4">
+      <!-- Category -->
+      <div class="single category">
+        <h3 class="side-title">Contacts <img class="pull-right" width="60" src="../../assets/img/Hogwarts_Logo.png" alt="logo"></h3>
+        <div class="row">
+          <form action="" class="search-form">
+            <div class="form-group has-feedback">
+              <label for="search" class="sr-only">Search</label>
+              <input type="text" class="form-control"
+                     name="search"
+                     id="search"
+                     [value]="searchWord"
+                     [(ngModel)]="searchWord"
+                     placeholder="search">
+              <span class="glyphicon glyphicon-search form-control-feedback"></span>
+            </div>
+          </form>
+        </div>
+        <ul class="list-unstyled">
+          <li *ngFor="let contact of contactList |searchName: searchWord |sortByName">
+            <a class="item" (click)="onSelected(contact)">
+              {{contact.name}}
+              <span class="pull-right">
+                ({{contact.bookings.length}})
+              </span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-md-5 col-md-offset-1 col-sm-10 text-center" *ngIf="selectedContact">
+      <app-contact-item [contact]="selectedContact"></app-contact-item>
+    </div>
+
+  </div>
+</div>

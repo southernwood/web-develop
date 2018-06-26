@@ -1,0 +1,17 @@
+<div class="row">
+    <div class="col-lg-12" ng-repeat="service in services">
+        <h2>Services</h2>
+        <div class="row service">
+            <div class="col-md-2">
+                <img src="http://icons.iconarchive.com/icons/martz90/circle-addon2/512/{{service.image}}" alt="computer"/>
+            </div>
+            <div class="col-md-10">
+                <h3>{{ service.name }}</h3>
+                <p>
+                    {{service.description}}
+                </p>
+                <a href="contact.html" class="btn btn-primary">Contact us</a>
+            </div>
+        </div>
+    </div>
+</div>

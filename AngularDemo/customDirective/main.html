@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+</head>
+<body>
+<div ng-app="myApp" controller="MainCtrl">
+    <div hello>replaced?</div>
+    <div hello1 hello2></div>
+</div>
+
+<script>
+    angular.module('myApp', [])
+        .directive('hello', function () {
+            return {
+                restrict: 'AE',
+                template: "<div> Hello World <div><ng-transclude/>",
+                replace: true,
+                transclude: true
+            }
+        })
+        .directive('hello1', function () {
+            return {
+                template: "<div>hello 1</div>",
+                priority: 2
+            }
+
+        })
+        .directive('hello2', function () {
+            return {
+                template: "<div>hello 2</div>",
+                terminal: true,
+                priority: 7
+            }
+
+        })
+        .controller("MainCtrl")
+</script>
+</body>
+</html>

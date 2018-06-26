@@ -1,0 +1,104 @@
+.navbar{
+  z-index: 10;
+}
+input{
+  background: rgb(88, 96, 105);
+  border: none;
+  border-radius: 3px 0 0 3px;
+  color: white;
+}
+.logo img{
+  position: absolute;
+}
+input::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: darkgray;
+}
+input::-moz-placeholder { /* Firefox 19+ */
+  color: ghostwhite;
+}
+input:-ms-input-placeholder { /* IE 10+ */
+  color: ghostwhite;
+}
+input:-moz-placeholder { /* Firefox 18- */
+  color: ghostwhite;
+}
+
+button[type=submit] {
+  background: rgb(88, 96, 105);
+  border-radius: 0 3px 3px 0;
+  color: darkgray;
+  margin-left: -2px;
+}
+button[type=submit]:focus,:hover{
+  color: white;
+}
+
+
+
+.bs-dark .dropdown-menu {
+  min-width: 200px;
+  padding: 5px 0;
+  margin: 2px 0 0;
+  background-color: #000;
+  border: 1px solid rgba(0, 0, 0, 0.7);
+  border: 1px solid rgba(0, 0, 0, .15);
+  -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+}
+
+.bs-dark .dropdown-menu .divider {
+  border: 1px solid rgba(0, 0, 0, 0.8);
+}
+.bs-dark .dropdown-menu > li > a {
+  padding: 6px 20px;
+  color: rgba(255,255,255,0.80);
+}
+.bs-dark .dropdown-menu > li > a:hover,
+.bs-dark .dropdown-menu > li > a:focus {
+  color: rgb(255,255,255);
+  text-decoration: none;
+  background-color: transparent;
+}
+.bs-dark .dropdown-menu > .active > a,
+.bs-dark .dropdown-menu > .active > a:hover,
+.bs-dark .dropdown-menu > .active > a:focus {
+  color: rgb(255,255,255);
+  text-decoration: none;
+  background-color: transparent;
+  outline: 0;
+}
+/*.navbar:after{*/
+   /*content: "";*/
+   /*width: 100px;*/
+   /*height: 100px;*/
+   /*left: 45%;*/
+   /*top:-10px;*/
+   /*position: absolute;*/
+   /*background-color: rgb(34,34,34);*/
+   /*border-radius: 50%;*/
+   /*z-index: 12;*/
+ /*}*/
+
+.navbar:after{
+  content: "";
+  width: 100px;
+  height: 100px;
+  left: 45%;
+  top:-10px;
+  position: absolute;
+  background-color: rgb(34,34,34);
+  transform: rotate(45deg);
+  z-index: 3;
+}
+.logo{
+  width: 70px;
+  position: absolute;
+  left: 43.8%;
+  top: 10px;
+  z-index: 14;
+  opacity: 0.9;
+  cursor: pointer;
+}
+img[alt=Logo]:hover{
+  filter: brightness(90%);
+}

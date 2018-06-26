@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+</head>
+<body>
+
+<div ng-app="myApp" ng-controller="MainCtrl">
+    <p><input type="text" ng-model="pattern" placeholder="Search"></p>
+
+    <table border="1" width="100%">
+        <tr>
+            <th ng-click="orderByMe('ProductID')">Product ID
+                <span ng-show="!flag['ProductID']">🔺</span>
+                <span ng-show="flag['ProductID']">🔻</span>
+            </th>
+            <th ng-click="orderByMe('ProductName')">Product Name
+                <span ng-show="!flag['ProductName']">🔺</span>
+                <span ng-show="flag['ProductName']">🔻</span>
+            </th>
+            <th ng-click="orderByMe('ProductPrice')">Product Price
+                <span ng-show="!flag['ProductPrice']">🔺</span>
+                <span ng-show="flag['ProductPrice']">🔻</span>
+
+            </th>
+        </tr>
+        <tr ng-repeat="x in data | orderBy: propertyName : reverse | filter: pattern">
+            <td>{{x.ProductID}} </td>
+            <td>{{x.ProductName}}</td>
+            <td>{{x.ProductPrice | currency }}</td>
+        </tr>
+    </table>
+</div>
+
+<script>
+    angular.module("myApp", [], function ($provide) {
+        $provide.service('Data', function () {
+            return [
+                {ProductID: 3424, ProductName: "ipad mini", ProductPrice: 2200},
+                {ProductID: 1212, ProductName: "ipad air", ProductPrice: 2340},
+                {ProductID: 885, ProductName: "ipad", ProductPrice: 3420},
+                {ProductID: 3333, ProductName: "iphone", ProductPrice:5400},
+                {ProductID: 980, ProductName: "iMac", ProductPrice: 15400},
+            ]
+        })
+    })
+        .controller("MainCtrl", function ($scope, Data) {
+            $scope.data = Data;
+            $scope.flag = {};
+            $scope.propertyName = null;
+            $scope.reverse = false;
+            $scope.orderByMe = function(x) {
+                $scope.reverse = ($scope.propertyName === x) ? !$scope.reverse : false;
+                $scope.propertyName = x;
+                $scope.flag[x] = $scope.reverse;
+            }
+        })
+
+</script>
+<style>
+    table{
+        width: 70%;
+        margin: auto;
+    }
+    table, th, td {
+        border: none;
+        text-align: center;
+    }
+</style>
+</body>
+</html>

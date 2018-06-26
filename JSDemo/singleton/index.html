@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+    var Singleton = function() {
+        var instance;
+        function createInstance() {
+            instance = new Object();
+            return instance;
+        }
+        return {
+            getInstance: function () {
+                if(instance){
+                    return instance
+                }else{
+                    return createInstance();
+                }
+            }
+        }
+    }();
+
+
+//    var a = Singleton.getInstance();
+//    var b = Singleton.getInstance();
+//    console.log(a === b);
+
+    function Singleton(){
+        if(!Singleton.prototype.instance){
+            Singleton.prototype.instance = new Object();
+        }
+        return Singleton.prototype.instance;
+    }
+//    var a = new Singleton();
+//    var b = new Singleton();
+//    console.log(a === b);
+    class A{
+        constructor(name, age){
+            this.name = name;
+            this.age = age;
+        }
+        grow(){
+            this.age++;
+        };
+        getAge(){
+            return this.age;
+        };
+        setAge(age){
+            this.age = age;
+        };
+    }
+
+    var person = new A('john', 12);
+    console.log(person.getAge());
+    person.grow();
+    console.log(person.getAge());
+    person.setAge(50);
+    console.log(person.getAge());
+
+</script>
+
+
+</body>
+</html>

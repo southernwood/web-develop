@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+</head>
+<body>
+<div ng-app="myApp">
+    <div ng-controller="MainCtrl">
+        {{ books }}
+        <div book-list books="books" parent-book="books" parent-title="{{title}}"></div>
+    </div>
+</div>
+</body>
+
+<script>
+    angular.module('myApp', [])
+        .directive('bookList', function () {
+            return {
+                restrict: 'ECAM',
+                controller: function ($scope) {
+                    console.log($scope.c);
+                    $scope.books = $scope.c;
+                },
+                scope:{
+                    c: '=parentBook'
+                },
+                controllerAs: 'bookListController',
+                template: '<div><ul><li ng-repeat="book in books"> {{book}} </li></ul></div>',
+                replace: true
+            }
+        })
+        .controller('MainCtrl', ['$scope', function ($scope) {
+            $scope.books = [
+                'angular',
+                'javascript'
+            ]
+        }])
+</script>
+</html>
+
+<!--
+<script>
+    angular.module('myApp', [])
+        .controller('MainCtrl', function ($scope, $http) {
+            $http.get('data.json').then(function(res){
+                $scope.unites = res.data;
+                const states = new Set();
+                $scope.unites.map(u=>{
+                    states.add(u.state);
+                })
+                $scope.states = Array.from(states);
+                console.log($scope.states);
+            });
+            $scope.clear = ()=>{
+                $scope.data = {};
+                $scope.myForm.$setPristine();
+            }
+        })
+</script>
+</body>
+</html>-->

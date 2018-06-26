@@ -1,0 +1,109 @@
+<div class="container">
+<div class="panel panel-table">
+  <div class="panel-heading">
+    <div class="row">
+      <div class="col col-md-3">
+        <form action="" class="search-form">
+          <div class="form-group has-feedback">
+            <label for="search" class="sr-only">Search</label>
+            <input type="text" class="form-control"
+                   name="search"
+                   id="search"
+                   [value]="searchWord"
+                   [(ngModel)]="searchWord"
+                   placeholder="search">
+            <span class="glyphicon glyphicon-search form-control-feedback"></span>
+          </div>
+        </form>
+      </div>
+      <div class="col col-md-3 text-center">
+      </div>
+      <div class="col col-md-6 text-right">
+        <div class="pull-right">
+          <div class="btn-group">
+            <input type="radio" name="options"
+                   id="option1"
+                   value="today"
+                   (change)="onChange('today')">
+            <label class="btn btn-default btn-filter" for="option1">today
+            </label>
+            <input type="radio"
+                   name="options"
+                   id="option2"
+                   value="unfinished"
+                   (change)="onChange('unfinished')"
+            >
+            <label class="btn btn-default btn-filter" for="option2" >unfinished
+            </label>
+            <input type="radio"
+                   name="options"
+                   id="option3"
+                   value="all"
+                   (change)="onChange('all')"
+            >
+            <label class="btn btn-default btn-filter" for="option3">View All
+            </label>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel-body">
+    <table class="table table-hover">
+      <tr>
+        <th>Name</th>
+        <th>Time</th>
+        <th>Telephone</th>
+        <th class="text-center">Party (people)</th>
+        <th class="text-center">Table Id</th>
+        <th class="text-center">Confirmation Code</th>
+        <th class="text-center">Action</th>
+      </tr>
+      <tr
+        *ngFor="let booking of bookings
+        | filterList: option
+        | searchName: searchWord
+        | sortByTime
+        |paginate: { itemsPerPage: 10, currentPage: p }">
+        <td>{{booking.name | capitalize}}</td>
+        <td>{{booking.startTime | date:'medium'}}</td>
+        <td>{{booking.telephone|telephone }}</td>
+        <td class="text-center">{{booking.size}}</td>
+        <td class="text-center">{{booking.tableId}}</td>
+        <td class="text-center"> <a [routerLink]="['/bookings', booking.key]" class="btn btn-default conformation">{{booking.key.substring(2)}}</a></td>
+        <td class="text-center">
+          <span class="btn btn-default" href=""  (click)="onEdit(booking.key)"><i class="fa fa-pencil" aria-hidden="true"></i></span>
+          <span class="btn btn-default" href="" (click)="onShowDialog(booking)"><i class="fa fa-trash-o" aria-hidden="true"></i></span>
+        </td>
+      </tr>
+    </table>
+    <div class="text-right">
+      <pagination-controls class="pagination-lg" (pageChange)="p = $event"></pagination-controls>
+    </div>
+  </div>
+</div>
+</div>
+<div class="confirm">
+  <app-modal [(visible)] = 'showDialog' [width]="400" [height]="300">
+    <div *ngIf="this.selectedBooking">
+      <h1 style="color: #d9534f">Remove Reservation</h1>
+      <hr>
+      <h4>Are you sure you want to delete</h4>
+      <div class="text-center">
+        <p>{{this.selectedBooking.name}}</p>
+        <p>{{this.selectedBooking.time}}</p>
+        <p>{{this.selectedBooking.key}}</p>
+      </div>
+      <div class="col-12-xs text-center">
+        <button class="btn btn-danger btn-md"
+                (click)="onDelete(this.selectedBooking.key)">
+          Delete
+        </button>
+        <button class="btn btn-default btn-md" (click)="showDialog=false">Cancel</button>
+      </div>
+    </div>
+  </app-modal>
+</div>
+

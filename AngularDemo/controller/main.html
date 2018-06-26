@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+</head>
+<body ng-app="myApp" ng-controller="MainCtrl">
+
+<h1> {{book.name}}</h1>
+
+the book is author is {{book.author}}<br>
+Id: <span ng-bind="book.id"></span>
+
+<script>
+    var app = angular.module("myApp", []);
+    app.controller("MainCtrl", function ($scope) {
+        $scope.book = {
+            id: 1,
+            name: 'AngularJS',
+            author: "ellie"
+        }
+    })
+
+</script>
+</body>
+</html>

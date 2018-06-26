@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="style1.css">
+    <link rel="stylesheet" href="style2.css">
+</head>
+<body>
+<input type="time" >
+<p>Hello it's me</p>
+<table>
+    <tr>
+        <th>
+            aa
+        </th>
+        <th>
+            bb
+        </th>
+    </tr>
+    <tr>
+        <td>
+            1
+        </td>
+        <td>
+            2
+        </td>
+    </tr>
+</table>
+<div id="text">
+    hello
+</div>
+<script>
+    const input = document.querySelector('input');
+    input.onkeydown = function (event) {
+        console.log(event.type)
+        console.log(event.keyCode);
+    }
+    input.onkeypress = function (event) {
+        console.log(event.type)
+        console.log(event.keyCode);
+    }
+    input.onkeyup = function (event) {
+        console.log(event.type)
+        console.log(event.keyCode);
+    }
+    document.getElementById('text').addEventListener('mouseover', ()=>console.log("enter"));
+
+</script>
+<style>
+    #text{
+        background-color: #42a5f5;
+        padding: 50px;
+
+    }
+</style>
+</body>
+</html>

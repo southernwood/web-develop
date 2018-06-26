@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+          crossorigin="anonymous">
+</head>
+<body>
+<div ng-app="myApp">
+    <form name="myForm" class="container form-horizontal" ng-controller="MainCtrl">
+        <div class="form-group" ng-class="{'has-error': myForm.username.$dirty && myForm.username.$invalid}">
+            <label class="col-sm-2 control-label">UserName</label>
+            <div class="col-sm-10">
+                <input type="text" name="username" class="form-control" placeholder="UserName"
+                       ng-model = "data.username" ng-required="true"
+                       ng-minlength="6" ng-maxlength="12" ng-pattern="/^[a-zA-Z]{1}/">
+                <div ng-show="myForm.username.$error.maxlength" class="alert alert-danger help-block">
+                    UserName's length cannot over 12
+                </div>
+                <div ng-show="myForm.username.$error.minlength" class="alert alert-danger help-block">
+                    UserName's length cannot less than 6
+                </div>
+                <div ng-show="myForm.username.$error.pattern" class="alert alert-danger help-block">
+                    UserName must start in Letter
+                </div>
+            </div>
+        </div>
+        <div class="form-group" ng-class="{'has-error': myForm.password.$dirty && myForm.password.$invalid}">
+            <label class="col-sm-2 control-label">Password</label>
+            <div class="col-sm-10">
+                <input type="password" name="password" class="form-control" placeholder="Password"
+                       ng-model = "data.password" ng-required="true" ng-minlength="4">
+                <div ng-show="myForm.password.$error.minlength" class="alert alert-danger help-block">
+                    password's length cannot less than 4
+                </div>
+            </div>
+        </div>
+        <div class="form-group" ng-class="{'has-error': myForm.confrim.$dirty && myForm.confrim.$invalid}">
+            <label class="col-sm-2 control-label">Confirm Password</label>
+            <div class="col-sm-10">
+                <input type="password" name="confrim" class="form-control" placeholder="Confrim Password"
+                       ng-model="data.confirm" ng-required="true" ng-pattern="data.password">
+                <div ng-show="myForm.confrim.$error.pattern" class="alert alert-danger help-block">
+                    password must be the same
+                </div>
+            </div>
+        </div>
+        <div class="form-group" ng-class="{'has-error': myForm.email.$dirty && myForm.email.$invalid}">
+            <label class="col-sm-2 control-label">Email</label>
+            <div class="col-sm-10">
+                <input type="email" name="email" class="form-control" placeholder="Email"
+                       ng-model="data.email" ng-required="true"
+                       ng-pattern="/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/">
+                <div ng-show="myForm.email.$error.pattern" class="alert alert-danger help-block">
+                    email format wrong
+                </div>
+            </div>
+        </div>
+        <div class="form-group" ng-class="{'has-error': myForm.url.$dirty && myForm.url.$invalid}">
+            <label class="col-sm-2 control-label">Url</label>
+            <div class="col-sm-10">
+                <input type="text" name="url" class="form-control" placeholder="http:://"
+                       ng-model="data.url" ng-required="true"
+                       ng-pattern="/^((http[s]?|ftp):\/)?\/?([^:\/\s]+)((\/\w+)*\/)([\w\-\.]+[^#?\s]+)(.*)?(#[\w\-]+)?$/">
+                <div ng-show="myForm.url.$error.pattern" class="alert alert-danger help-block">
+                    url format wrong
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Born place</label>
+            <div class="col-sm-10">
+                <select ng-options="state for state in (unities | stateFilter)"
+                        ng-model="data.selectedState"></select>
+                <select ng-options="city for city in (unities | cityFilter: data.selectedState)"
+                        ng-model="data.selectedCity"></select>
+                <select ng-options="country for country in (unities | countryFilter: data.selectedState : data.selectedCity)"
+                        ng-model="data.selectedCountry"></select>
+            </div>
+        </div>
+        <div class="form-group text-center">
+            <button type="submit" class="btn btn-primary">Register</button>
+            <button class="btn btn-danger" ng-click="clear()">Reset</button>
+        </div>
+    </form>
+
+
+</div>
+
+<script>
+    angular.module('myApp', [])
+        .controller('MainCtrl', function ($scope, $http) {
+            $http.get('data.json').then(function(res){
+                $scope.unities = res.data;
+            });
+            $scope.clear = ()=>{
+                console.log(e);
+                $scope.data = {};
+                $scope.myForm.$setPristine();
+            }
+        }).filter('stateFilter', function () {
+            return function (data) {
+                if (!data) return
+                const states = new Set();
+                data.map(d => states.add(d.state));
+                return Array.from(states);
+            }
+
+    }).filter('cityFilter', function () {
+        return function (data, state) {
+            if(!data || !state) return;
+            const cities = new Set();
+            data.filter(d=> d.state === state).map(d=> cities.add(d.city));
+            return [...cities];
+
+        }
+    }).filter('countryFilter', function () {
+        return function (data, state, city) {
+            if (!data || !state || !city) return;
+            const countries = new Set();
+            data.filter(d=> (d.state === state && d.city === city)).map(d => {
+                if (d.country){
+                    countries.add(d.country);
+                }
+            });
+            return [...countries];
+        }
+    })
+</script>
+</body>
+</html>

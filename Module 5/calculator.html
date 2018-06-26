@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script language='JavaScript'>
+Memory  = "0";      // initialise memory variable
+Current = "0";      //   and value of Display ("current" value)
+Operation = 0;      // Records code for eg * / etc.
+MAXLENGTH = 30;  
+
+function AddDigit(dig)          //ADD A DIGIT TO DISPLAY (keep as 'Current')
+ { if (Current.indexOf("!") == -1)  //if not already an error
+    { if (    (eval(Current) == 0)
+              && (Current.indexOf(".") == -1)
+         ) { Current = dig;
+           } else
+           { Current = Current + dig;
+           };
+      Current = Current.toLowerCase(); //FORCE LOWER CASE
+    } else
+    { Current = "Hint! Press 'AC'";  //Help out, if error present.
+    };
+   if (Current.indexOf("e0") != -1)
+     { var epos = Current.indexOf("e");
+       Current = Current.substring(0,epos+1) + Current.substring(epos+2);
+     };
+  if (Current.length > MAXLENGTH)
+     { Current = "Aargh! Too long"; //don't allow over MAXLENGTH digits before "." ???
+     };
+   document.Calculator.Display.value = Current;
+ }
+ 
+function dot(){
+if(Current.length==0){
+Current="0.";
+}else if(Current.indexOf(".") == -1){
+Current=Current+".";
+}
+
+   document.Calculator.Display.value = Current;
+}
+
+
+function doExp(){
+if(Current.indexOf("e")==-1){
+Current = Current + "e0";
+         document.Calculator.Display.value = Current;
+};
+
+}
+
+
+function clearCurrent()               //CLEAR ENTRY
+ { Current = "0";
+   document.Calculator.Display.value = Current;
+ }
+
+ 
+function clearAll(){
+Memory  = "0";      // initialise memory variable
+Current = "0";      //   and value of Display ("current" value)
+Operation = 0; 
+document.Calculator.Display.value = Current;
+
+}
+
+function plusMinus()
+ {
+  if  (Current.indexOf("e") != -1)  //if there is an exponent:
+    { var epos = Current.indexOf("e-");
+      if (epos != -1)
+         { Current = Current.substring(0,1+epos) + Current.substring(2+epos); //clip -ve exp 
+         } else
+         { epos = Current.indexOf("e");
+           Current = Current.substring(0,1+epos) + "-" + Current.substring(1+epos); //insert
+         };
+    } else                         //there is NO exponent:
+    {  if ( Current.indexOf("-") == 0 )
+         { Current = Current.substring(1);
+         } else
+         { Current = "-" + Current;
+         };
+    };
+  document.Calculator.Display.value = Current;
+ }
+
+function operate(op)            //STORE OPERATION e.g. + * / etc.
+ {
+ 
+ 
+ if(Operation!=0){
+ calculator();
+ }
+  if (op.indexOf("*") > -1) { Operation = 1; };       //codes for *
+  if (op.indexOf("/") > -1) { Operation = 2; };       // slash (divide)
+  if (op.indexOf("+") > -1) { Operation = 3; };       // sum
+  if (op.indexOf("-") > -1) { Operation = 4; };       // difference
+
+  Memory = Current;                 //store value
+  Current = "";                     //or we could use "0"
+  document.Calculator.Display.value = Current;
+  
+  
+ }
+
+ 
+
+function calculator()            //PERFORM CALCULATION (= button)
+ { 
+  if (Operation == 1) { Current = eval(Memory) * eval(Current); };
+  if (Operation == 2) { Current = eval(Memory) / eval(Current); };
+  if (Operation == 3) { Current = eval(Memory) + eval(Current); };
+  if (Operation == 4) { Current = eval(Memory) - eval(Current); };
+  Operation = 0;                //clear operation
+  Memory    = "0";              //clear memory
+  document.Calculator.Display.value = Current;
+ }
+ 
+</script>
+
+
+</head>
+<body>
+<h1>calculator</h1>
+
+
+
+
+
+<FORM name="Calculator">
+<div align="center">
+<table width="30%" border="4">
+<tr><td colspan="2" align="center"> A Simple JavaScript Calculator<br><input type="text" maxlength="40" size="30" name="Display">
+    
+
+</td></tr>
+<tr><td>
+<!--Numeric Buttons-->
+
+    <table align="center">
+       <tr>
+         <td ><input type="button" value="7" OnClick="AddDigit('7')"></td>
+         <td ><input type="button" value="8" OnClick="AddDigit('8')"></td>
+         <td ><input type="button" value="9" OnClick="AddDigit('9')"></td>
+       </tr>
+       <tr>
+         
+		 <td><input type="button" value="4" OnClick="AddDigit('4')"></td>
+         <td><input type="button" value="5" OnClick="AddDigit('5')"></td>
+         <td><input type="button" value="6" OnClick="AddDigit('6')"></td>
+		</tr>
+
+		<tr>
+         
+		 <td><input type="button" value="1" OnClick="AddDigit('1')"></td>
+         <td><input type="button" value="2" OnClick="AddDigit('2')"></td>
+         <td><input type="button" value="3" OnClick="AddDigit('3')"></td>
+		</tr>
+		<tr>
+         
+		 <td><input type="button" value="0" OnClick="AddDigit('0')"></td>
+         <td><input type="button" value="."  OnClick="dot()"></td>
+         <td><input type="button" value="+/-" OnClick="plusMinus()"></td>
+		</tr>
+		
+      </table>
+
+
+</td>
+
+
+    <td> 
+	<!--function buttons-->
+	
+	<table align="center">
+       <tr>
+         <td><input type="button" value="C" OnClick="clearCurrent()"></td>
+         <td><input type="button" value="AC" OnClick="clearAll()"></td>
+       </tr>
+       <tr>
+         <td><input type="button" value="+" OnClick="operate('+')"></td>
+         <td><input type="button" value="-" OnClick="operate('-')"></td>
+       </tr>
+       <tr>
+         <td><input type="button" value="X" OnClick="operate('*')"></td>
+         <td><input type="button" value="/" OnClick="operate('/')"></td>
+       </tr>
+	     <tr>
+         <td><input type="button" value="=" OnClick="calculator()"></td>
+         <td><input type="button" value="exp" OnClick="doExp()"></td>
+       </tr>
+      </table>
+</td>
+</tr></table></div>
+
+
+
+</FORM>
+
+</body>
+</html> 
+
+

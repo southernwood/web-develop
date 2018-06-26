@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+</head>
+<body>
+<div ng-app="myApp">
+    <div ng-controller="MainCtrl">
+        <input type="text" value="" ng-model="name" />
+        change count: {{count}} - {{name}}
+    </div>
+</div>
+
+<script>
+    var app = angular.module("myApp", []);
+    app.controller("MainCtrl", function ($scope) {
+        $scope.count = 0;
+        $scope.name = 'ellie';
+        $scope.$watch('name',(newValue, oldValue)=>{
+            if(newValue !== "more than 30 times"){
+                if ($scope.count < 30){
+                    $scope.name = newValue;
+                }else{
+                    $scope.name = "more than 30 times";
+                }
+                $scope.count++;
+            }
+        })
+    })
+
+</script>
+
+</body>
+</html>

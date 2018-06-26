@@ -1,0 +1,11 @@
+<!DOXTYPE html?
+<html>
+<head>
+	<title>MY first php script</title>
+	</head>
+	<body>
+	<? php
+	echo "\t<p> Hello world!</title>"
+	?>
+	</body>
+	</html>

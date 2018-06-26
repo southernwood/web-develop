@@ -1,0 +1,50 @@
+/* app css stylesheet */
+
+.menu {
+  list-style: none;
+  border-bottom: 0.1em solid black;
+  margin-bottom: 2em;
+  padding: 0 0 0.5em;
+}
+
+.menu:before {
+  content: "[";
+}
+
+.menu:after {
+  content: "]";
+}
+
+.menu > li {
+  display: inline;
+}
+
+.menu > li + li:before {
+  content: "|";
+  padding-right: 0.3em;
+}
+body {
+  padding-top: 50px;
+}
+.starter-template {
+  padding: 40px 15px;
+}
+.list-group-item:nth-child(even){
+  background-color:#f5f7f8;
+}
+.list-group-item{
+  height: 50px;
+  font-size: 20px;
+}
+.deleted{
+  text-decoration: line-through;
+
+}
+
+.item-name:hover{
+  -webkit-transition: text-decoration 0.4s ease;
+  -moz-transition: text-decoration 0.4s ease;
+  -o-transition: text-decoration 0.4s ease;
+  transition:  text-decoration 2s;
+
+}

@@ -1,0 +1,29 @@
+body {
+	margin: auto;
+	margin-left: 25%;
+	margin-right: 25%;
+	border: 30px solid #bdc3c7;
+}
+.post {
+	margin: 3%;
+}
+.quote {
+	border-left: 5px solid #bdc3c7;
+	padding-left: 5px;
+}
+.date {
+	color: #3498db;
+	text-transform: uppercase;
+	font-family: 'Source Sans Pro', sans-serif;
+	letter-spacing: 5px;
+}
+h2 {
+	color: #2c3e50
+	font-family: 'Source Sans Pro', sans-serif;
+}
+hr{
+    border: 0;
+    height: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}

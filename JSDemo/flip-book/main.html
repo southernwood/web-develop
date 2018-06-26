@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="flipbook">
+    <div class="page left leftpage">
+        <div class="pagewrap">
+            <div class="page_content">
+                Dies ist die erste Seite des flipbooks
+            </div>
+        </div>
+    </div>
+    <div class="page center">
+        <div class="innerpage rightpage inner_right">
+            <div class="pagewrap">
+                <div class="page_content">
+                    Dies ist die erste Seite des flipbooks
+                </div>
+            </div>
+        </div>
+        <div class="innerpage leftpage inner_left">
+            <div class="pagewrap">
+                <div class="page_content">
+                    asjk dfhajk sdhfkjas hdkfjh sakjdfhjk shadfkjah skjdfh aksjdfh akjsdhfkj ashdfkja hsdfkjh asd
+                    a sdfasdf asdf asdfasdf asdfk ahskdfhajshdfaksdfhaksdhfsakdfas
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="page right rightpage">
+        <div class="pagewrap">
+            <div class="page_content">
+                asjk dfhajk sdhfkjas hdkfjh sakjdfhjk shadfkjah skjdfh aksjdfh akjsdhfkj ashdfkja hsdfkjh asd
+                a sdfasdf asdf asdfasdf asdfk ahskdfhajshdfaksdfhaksdhfsakdfas
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+
+
+
+
+    .flipbook {
+        width: 300px;
+        height: 100px;
+        background: red;
+        position: relative;
+        -moz-perspective: 1100px;
+        -moz-perspective-origin: 50% 50%;
+        -webkit-perspective: 1100px;
+        -webkit-perspective-origin: 50% 50%;
+    }
+
+    .flipbook .page {
+        position: absolute;
+        width: 50%;
+        height: 100%;
+    }
+
+    .flipbook .pagewrap {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+    }
+
+    .flipbook .innerpage {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        -moz-backface-visibility: hidden;
+        -webkit-backface-visibility: hidden;
+    }
+
+    .flipbook .innerpage.inner_right {
+        background: blue;
+    }
+
+    .flipbook .innerpage.inner_left {
+        background: green;
+        -moz-transform: rotateY(180deg);
+        -webkit-transform: rotateY(180deg);
+    }
+
+    .flipbook .page .page_content {
+        width: 200%;
+        height: 100%;
+        position: relative;
+    }
+
+    .flipbook .left {
+        left: 0;
+        z-index: 1;
+    }
+
+    .flipbook .right {
+        right: 0;
+        z-index: 1;
+        background: yellow;
+    }
+
+    .flipbook .center {
+        right: 0;
+        z-index: 2;
+    }
+
+    .flipbook .center.flipped {
+        -moz-transform: rotateY(-180deg);
+        -moz-transform-origin: left center;
+        -moz-transform-style: preserve-3d;
+        -moz-transition-duration: 1500ms;
+        -moz-transition-property: -moz-transform;
+        -moz-transition-timing-function: ease;
+
+        -webkit-transform: rotateY(-180deg);
+        -webkit-transform-origin: left center;
+        -webkit-transform-style: preserve-3d;
+        -webkit-transition-duration: 1500ms;
+        -webkit-transition-property: -webkit-transform;
+        -webkit-transition-timing-function: ease;
+    }
+
+
+    .flipbook .rightpage .page_content {
+        left: -100%;
+    }
+</style>
+</body>
+</html>

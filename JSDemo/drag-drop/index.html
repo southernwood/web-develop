@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+    <h1>To Do board</h1>
+    <form class="form-inline" onsubmit="onSubmit(event)">
+        <div class="form-group">
+            <label class="sr-only">Add</label>
+            <input type="text" class="form-control" placeholder="what's new">
+        </div>
+    </form>
+    <hr>
+    <div class="row">
+        <div class="col-sm-3">
+           <h4 class="text-center">Todo</h4>
+            <ul id="todo" ondragover="allowDrop(event)" ondrop="drop(event)" ondragend ="drop(event)">
+            </ul>
+        </div>
+        <div class="col-sm-6" >
+            <h4 class="text-center">Doing</h4>
+            <ul id="doing" ondragover="allowDrop(event)" ondrop="drop(event)" ondragend ="drop(event)">
+            </ul>
+        </div>
+        <div class="col-sm-3">
+            <h4 class="text-center">Done</h4>
+            <ul id="done" ondragover="allowDrop(event)" ondrop="drop(event)" ondragend ="drop(event)">
+            </ul>
+        </div>
+    </div>
+</div>
+</body>
+
+<script src="app.js"></script>
+</html>

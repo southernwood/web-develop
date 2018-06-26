@@ -1,0 +1,108 @@
+database:
+http://ec2-54-200-63-122.us-west-2.compute.amazonaws.com/phpmyadmin/
+user name: grader
+password: 530
+
+CREATE TABLE calender_holiday(
+date  date NOT NULL,
+name VARCHAR(20) NOT NULL,
+type VARCHAR(20),
+PRIMARY KEY (date)
+)engine = INNODB DEFAULT character SET = utf8 COLLATE = utf8_general_ci;
+
+CREATE TABLE flight_departual(
+carrier_code  VARCHAR(5) NOT NULL,
+date date NOT NULL,
+flight_number INT NOT NULL,
+Tail_Number VARCHAR(10) NOT NULL,
+Destination VARCHAR(3),
+Scheduled_departure_time TIME,
+actual_departure_time TIME, 
+Scheduled_elaspsed_time INT,
+actual_elapsed_time INT,
+departure_delay INT,
+wheels_off_time TIME,
+Taxiout_time INT,
+delay_carrier int,
+delay_weather int,
+delay_notional int,
+delay_security int,
+delay_late_arrival int,
+PRIMARY KEY (flight_number, date,carrier_code)
+)engine = INNODB DEFAULT character SET = utf8 COLLATE = utf8_general_ci;
+
+CREATE TABLE flight_arrival(
+carrier_code  VARCHAR(5) NOT NULL,
+date date NOT NULL,
+flight_number INT NOT NULL,
+Tail_Number VARCHAR(10) NOT NULL,
+Origin_Airport VARCHAR(3),
+Scheduled_arrival_time TIME,
+actual_arrival_time TIME,
+Scheduled_elaspsed_time INT,
+actual_elapsed_time INT,
+arrival_delay INT,
+wheels_off_time TIME,
+Taxiout_time INT,
+delay_carrier int,
+delay_weather int,
+delay_notional int,
+delay_security int,
+delay_late_arrival int,
+PRIMARY KEY (flight_number, date,carrier_code)
+)engine = INNODB DEFAULT character SET = utf8 COLLATE = utf8_general_ci;
+
+create table weather(
+date date not null,
+Max_Temp tinyint,
+Mean_Temp tinyint,
+Min_Temp tinyint,
+Max_Dew_Point tinyint,
+Mean_Dew_Point tinyint,
+Min_Dew_Point tinyint,
+Max_Humidity tinyint,
+Mean_Humidity tinyint,
+Min_Humidity tinyint,
+Max_Sea float,
+Mean_Sea float,
+Min_Sea float,
+Max_Visibility tinyint,
+Mean_Visibility tinyint,
+Min_Visibility tinyint,
+Max_Wind tinyint,
+Mean_Wind tinyint,
+Min_Wind tinyint,
+Precipitation varchar(5),
+CloudCover float,
+Events varchar(20),
+WindDirDegrees int,
+PRIMARY KEY (date)
+)engine = INNODB DEFAULT character SET = utf8 COLLATE = utf8_general_ci;
+
+INSERT INTO `flight_arrival` VALUES ('WN', '2016-02-01', '20', 'N370SW', 'MCI', '07:20:00', '07:26:00', '60', '58', '6', '07:21:00', '5', '0', '0', '0', '0', '0');
+INSERT INTO `calender_holiday` VALUES ('2015-11-27', 'Black Friday', 'State holiday');
+INSERT INTO `weather` VALUES ('2015-09-01', '93', '84', '75', '71', '69', '67', '82', '62', '41', '30.06', '30.03', '30', '10', '10', '7', '14', '7', '20', '0.00', '1', '', '197');
+INSERT INTO `flight_departual` VALUES ('WN', '2016-02-01', '20', 'N370SW', 'MCI', '07:20:00', '07:26:00', '60', '58', '6', '07:21:00', '5', '0', '0', '0', '0', '0')
+
+load data local infile '/home/sensen/530/calender_holiday.csv' into table flightdelay fields terminated by ','
+enclosed by '"'
+lines terminated by '\n';
+
+load data local infile '/home/sensen/530/flight_arrival.csv' into table flightdelay fields terminated by ','
+enclosed by '"'
+lines terminated by '\n';
+
+load data local infile '/home/sensen/530/flight_departural.csv' into table flightdelay fields terminated by ','
+enclosed by '"'
+lines terminated by '\n';
+
+load data local infile '/home/sensen/530/weather.csv' into table flightdelay fields terminated by ','
+enclosed by '"'
+lines terminated by '\n';
+
+
+insert into weather (date,Min_wind) values('2016-4-17','3.11');
+update weather set Min_wind = 4 where date='2016-4-17';
+update weather set Min_wind = 4 where date='2016-4-18';
+select Events from weather where date='2016-4-17';
+select * from weather where date='2016-4-17';

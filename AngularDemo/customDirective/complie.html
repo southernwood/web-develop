@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+</head>
+<body ng-app="myApp">
+<div ng-controller="MainCtrl">
+    <div ng-repeat="user in users" custom-tags="absce" custom-tags2>
+    </div>
+</div>
+
+<script>
+    angular.module('myApp', [])
+        .directive('customTags', function () {
+            return {
+                template: '<div>{{user.name}}</div>',
+                replace: true,
+                compile: function (tElement, tAttrs, transclude) {
+                    console.log('tElement: ', tElement);
+                    console.log('tAttrs: ', tAttrs);
+                    console.log(transclude);
+                    tElement.append(angular.element('<div>{{user.name}}' + '{{user.count}}</div>'));
+                    console.log("customTags complie phase...");
+                    return {
+                        pre: function preLink(scope, iElement, iAttrs, controller) {
+                            console.log('customTags preLink....');
+                        },
+                        post: function postLink(scope, iElement, iAttrs, controller) {
+                            let i = 0;
+                            iElement.on('click', function () {
+                                scope.$apply(function () {
+                                    scope.user.name = 'click after';
+                                    scope.user.count = ++i;
+                                })
+                            })
+                            console.log('customTags all child directive link...');
+
+                        }
+                    }
+                },
+                link: function () {
+                    
+                }
+            }
+        })
+        .directive('customTags2', function() {
+            return {
+                restrict: 'ECMA',
+                replace: true,
+                compile: function () {
+                    console.log('customTags2 compile phase....');
+                    return {
+                        pre: function preLink() {
+                            console.log('customTags2 preLink...')
+                        },
+                        post: function postLink() {
+                            console.log('customTags3 all child directive link....')
+                        }
+                    }
+                }
+            }
+        })
+        .directive('customTags3', function() {
+            return function () {
+
+            }
+        })
+        .controller('MainCtrl', ['$scope', function ($scope) {
+            $scope.users = [
+                {
+                    id: 10,
+                    name: 'Jerry'
+                },
+                {
+                    id: 12,
+                    name: 'sensen'
+                },
+                {
+                    id: 6,
+                    name: 'ellie'
+                }
+            ]
+        }])
+</script>
+</body>
+</html>

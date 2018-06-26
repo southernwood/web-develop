@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+</head>
+<body ng-app="myApp" ng-controller="MainCtrl">
+{{date}}
+
+<script>
+    var app = angular.module("myApp", []);
+    app.controller("MainCtrl", function ($scope) {
+        $scope.date = Date.now();
+        setInterval(()=>{
+            $scope.$apply(()=>{
+                $scope.date = Date.now();
+            })
+        }, 1000)
+    })
+
+
+</script>
+</body>
+</html>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head><title>weather</title>
+
+
+
+<link rel="stylesheet" type="text/css" href="weather.css" />
+
+
+
+<script language='JavaScript'>
+function fetchWeather(event){
+	// The XMLHttpRequest is simple this time:
+	
+	var xmlHttp = new XMLHttpRequest();
+	xmlHttp.open("GET", "http://classes.engineering.wustl.edu/cse330/content/weather_json.php", true);
+	xmlHttp.addEventListener("load", getNoteCallback, false);
+	xmlHttp.send(null);
+}
+ 
+function getNoteCallback(event){
+	var htmlParent = document.getElementById("weatherWidget"); // Get the HTML element into which we want to write the note
+	var xmlDocument = event.target.responseXML; // Get the XML root node from the response
+	var weatherData = JSON.parse(event.target.responseText);
+	document.getElementById("local").textContent += weatherData.location.city;
+	document.getElementById("humidity").textContent += weatherData.atmosphere.humidity;
+	document.getElementById("temp").textContent += weatherData.current.temp;
+	var scr1="http://us.yimg.com/i/us/nws/weather/gr/"+weatherData.tomorrow.code+"ds.png";
+
+	var scr2="http://us.yimg.com/i/us/nws/weather/gr/"+weatherData.dayafter.code+"ds.png";
+
+	document.getElementById("tomorrow").src=scr1;
+	document.getElementById("dayaftertomorrow").src=scr2;
+}
+ 
+document.addEventListener("DOMContentLoaded", fetchWeather, false); // Bind the AJAX call to page load
+
+
+</script>
+
+
+
+</head>
+
+
+
+
+<body>
+
+
+<div class="weather" id="weatherWidget">
+	 <div class="weather-loc" id ="local"></div>
+	<div class="weather-humidity" id="humidity" ></div>
+	<div class="weather-temp" id="temp"></div>
+	<img class="weather-tomorrow" id="tomorrow"/>
+	<img class="weather-dayaftertomorrow" id="dayaftertomorrow" />
+</div>
+
+
+</body>
+</html>

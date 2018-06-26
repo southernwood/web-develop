@@ -1,0 +1,66 @@
+[
+  {
+    "state": "New York",
+    "city": "New York",
+    "country": "Brooklyn"
+  },
+  {
+    "state": "New York",
+    "city": "New York",
+    "country": "Central Park"
+  },
+  {
+    "state": "New York",
+    "city": "New York",
+    "country": "Manhattan"
+  },
+  {
+    "state": "Missouri",
+    "city": "St.Louis",
+    "country": "Univeristy City"
+  },
+  {
+    "state": "Missouri",
+    "city": "St.Louis",
+    "country": "St. Louis"
+  },
+  {
+    "state": "Missouri",
+    "city": "Branson"
+  },
+  {
+    "state": "Missouri",
+    "city": "Columbia",
+    "country": "Jefferson City"
+  },
+  {
+    "state": "Missouri",
+    "city": "St.Louis",
+    "country": "Cylton"
+  },
+  {
+    "state": "Missouri",
+    "city": "St.Louis",
+    "country": "St.Louis country"
+  },
+  {
+    "state": "New Jessy",
+    "city": "Somerset",
+    "country": "Elizabeth"
+  },
+  {
+    "state": "New Jessy",
+    "city": "Edison",
+    "country": "Edison-2"
+  },
+  {
+    "state": "New Jessy",
+    "city": "Edison",
+    "country": "Edison-3"
+  },
+  {
+  "state": "New Jessy",
+  "city": "Edison",
+  "country": "Edison-4"
+  }
+]

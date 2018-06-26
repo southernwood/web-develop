@@ -1,0 +1,199 @@
+.header{
+  margin-top: 0;
+}
+.header .block h1{
+  color: white;
+  font-size: 6em;
+  height: auto;
+  font-weight: bolder;
+  text-align: center;
+  position: relative;
+  overflow: visible;
+  padding: 5px;
+  top: 80px;
+  z-index: 10;
+  opacity: 1;
+  font-family: 'Great Vibes', cursive;
+  background: #f7ff00;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #db36a4, #f7ff00);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #db36a4, #f7ff00); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.header .block h3{
+  text-align: center;
+  color: white;
+  z-index:10;
+  position: relative;
+  top: 90px;
+  font-family: 'Great Vibes', cursive;
+  font-weight: bolder;
+  background: #f7ff00;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #db36a4, #f7ff00);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #db36a4, #f7ff00); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.header .block{
+  width: 100%;
+  position: relative;
+  background-color: rgb(34,34,34);
+  z-index: 3;
+  opacity: 1;
+  top: -70px;
+  left: 0;
+  height: 300px;
+  transition: all 2s;
+  overflow: hidden;
+  opacity: 0.6;
+}
+/*.header .block:hover{*/
+  /*height: 0px;*/
+/*}*/
+/*.header .block:hover:after{*/
+  /*top: -10px;*/
+/*}*/
+.header .block img{
+  width: 100%;
+
+}
+.header .block-after{
+  content: "";
+  color: white;
+  width: 100px;
+  height: 100px;
+  position: relative;
+  top: -120px;
+  left: 45%;
+  opacity: 0.8;
+  background-color: black;
+  transform: rotate(45deg);
+  z-index: 0;
+  transition: all 1.8s;
+  overflow: visible;
+}
+.header .block-after img{
+  width: 65px;
+  margin-top: 45px;
+  margin-left: 45px;
+  transform: rotate(-45deg);
+  z-index: 60;
+  filter: brightness(80%);
+  cursor: pointer;
+}
+
+.header .block-after img:hover{
+  filter: brightness(100%);
+  transform: scale(1.1, 1.1) rotate(-45deg);
+
+}
+.carousel-caption{
+  top:220px;
+}
+
+.main{
+  width: 100%;
+  position: absolute;
+  z-index: -10;
+  margin-top: -15px;
+  background-size: cover;
+  background-color: rgb(34,34,34);
+}
+.main img{
+  position: fixed;
+  width: 400px;
+
+}
+#myCarousel{
+  width: 80%;
+  margin: auto;
+  overflow: hidden;
+}
+.carousel-inner .item{
+  width: 100%;
+  height: 700px;
+  box-sizing: border-box;
+  border: solid 10px white !important;
+
+}
+.carousel-inner img{
+  width: 100%;
+  height: 100%;
+}
+footer{
+  width: 100%;
+  line-height: 30px;
+  text-align: center;
+  position: absolute;
+  background-color: black;
+  color: snow;
+}
+
+
+
+/* ==============================================================================================
+Nick Mkrtchyan
+https://www.facebook.com/sonick.pk
+http://www.Mkrtchyan.zz.mu
+================================================================================================= */
+
+@keyframes move-twink-back {
+  from {background-position:0 0;}
+  to {background-position:-10000px 5000px;}
+}
+@-webkit-keyframes move-twink-back {
+  from {background-position:0 0;}
+  to {background-position:-10000px 5000px;}
+}
+@-moz-keyframes move-twink-back {
+  from {background-position:0 0;}
+  to {background-position:-10000px 5000px;}
+}
+@-ms-keyframes move-twink-back {
+  from {background-position:0 0;}
+  to {background-position:-10000px 5000px;}
+}
+
+@keyframes move-clouds-back {
+  from {background-position:0 0;}
+  to {background-position:10000px 0;}
+}
+@-webkit-keyframes move-clouds-back {
+  from {background-position:0 0;}
+  to {background-position:10000px 0;}
+}
+@-moz-keyframes move-clouds-back {
+  from {background-position:0 0;}
+  to {background-position:10000px 0;}
+}
+@-ms-keyframes move-clouds-back {
+  from {background-position: 0;}
+  to {background-position:10000px 0;}
+}
+
+.stars, .twinkling, .clouds {
+  position:absolute;
+  top:0;
+  left:0;
+  right:0;
+  bottom:0;
+  width:100%;
+  height:100%;
+  display:block;
+}
+
+.stars {
+  background:#000 url(http://www.script-tutorials.com/demos/360/images/stars.png) repeat top center;
+  z-index:0;
+}
+
+.twinkling{
+  background:transparent url(http://www.script-tutorials.com/demos/360/images/twinkling.png) repeat top center;
+  z-index:1;
+
+  -moz-animation:move-twink-back 200s linear infinite;
+  -ms-animation:move-twink-back 200s linear infinite;
+  -o-animation:move-twink-back 200s linear infinite;
+  -webkit-animation:move-twink-back 200s linear infinite;
+  animation:move-twink-back 200s linear infinite;
+}

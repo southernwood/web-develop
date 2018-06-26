@@ -1,0 +1,47 @@
+span{
+  color: red;
+}
+.main{
+  width: 100%;
+  height: 100vh;
+  background: url(../../../assets/img/greethall.jpg) no-repeat;
+  background-size: cover;
+  margin-top: -35px;
+  z-index: -1;
+}
+.alert li{
+  display: inline;
+}
+.alert ul{
+  display: flex;
+  justify-content: space-around;
+}
+.book-form{
+  display: block;
+  font-family: 'Abril Fatface', cursive;
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+  padding: 20px;
+  width: 80%;
+  margin: 20px auto;
+  border: black;
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+}
+.book-form-footer{
+  text-align: center;
+}
+.book-form-footer button{
+  margin-right: 50px;
+  margin-left: 50px;
+  width: 100px;
+}
+.title{
+  text-align: center;
+  padding-top:80px;
+}
+.title img{
+  width: 35%;
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+  opacity: 0.8;
+}
+

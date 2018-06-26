@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Verbal test</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6 col-lg-offset-3 jumbotron">
+            <div class="row">
+                <div id="score-board">
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 id="word" class="text-center"></h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="button-group">
+                    <button class="btn btn-default" onclick="check(true)">SEEN</button>
+                    <button class="btn btn-default" onclick="check(false)">NOT SEEN</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row text-center">
+        <button class="btn btn-primary" id='startGame' onclick="startGame()">start game</button>
+    </div>
+    <div id="square">
+
+    </div>
+</div>
+</body>
+<script>
+    const file = "./google-10000-english.txt";
+    let words = [];
+    let word = null;
+    let score = 0;
+    let seenArr = [];
+    let seenSet = new Set();
+    let life = 3;
+    const wordHandler = document.getElementById('word');
+    const scoreHandler = document.getElementById('score-board');
+    const buttons = document.querySelector('.button-group').style;
+    console.log(buttons);
+    buttons.visibility = 'hidden';
+
+    (function readTextFile(file)
+    {
+        var rawFile = new XMLHttpRequest();
+        rawFile.open("GET", file, false);
+        rawFile.onreadystatechange = function ()
+        {
+            if(rawFile.readyState === 4)
+            {
+                if(rawFile.status === 200 || rawFile.status == 0)
+                {
+                    var allText = rawFile.responseText;
+                    words = allText.split('\n');
+                    words = words.filter(word=>word.length > 4);
+                }
+            }
+        }
+        rawFile.send(null);
+    })(file);
+
+    var showScore = function(score, life){
+        scoreHandler.textContent = 'score: '+ score+ " life: "+life;
+    }
+
+    var showAWord = function(){
+        let coin = Math.random();
+        if (coin< 0.55 || seenArr.length === 0){
+            word = words[Math.floor(Math.random()*words.length)];
+        }else{
+            word = seenArr[Math.floor(Math.random()*seenArr.length)];
+        }
+        wordHandler.textContent = word;
+        wordHandler.style.opacity = 1;
+
+    }
+    function fadeOut(id, speed) {
+        var s = document.getElementById(id).style;
+        s.display="hidden";
+        s.opacity = 0;
+    }
+
+    var check = function(option){
+        if (option === seenSet.has(word)){
+            console.log("right");
+            score++;
+        }else{
+            console.log('wrong');
+            life--;
+        }
+        showScore(score, life);
+        if(!seenSet.has(word)){
+            seenSet.add(word);
+            seenArr.push(word);
+        }
+        fadeOut('word', 50);
+        if (life === 0){
+            endGame();
+            return;
+        }
+        setTimeout(showAWord, 1000);
+    }
+
+    var startGame = function () {
+        score=0;
+        life = 3;
+        seenArr.length = 0;
+        seenSet.clear();
+        showScore(score, life);
+        showAWord();
+        document.getElementById('startGame').style.visibility = 'hidden';
+        buttons.visibility = 'visible';
+    }
+    var endGame = function () {
+        scoreHandler.textContent = 'your score is: ' + score;
+        document.getElementById('startGame').style.visibility = 'visible';
+        buttons.visibility = 'hidden';
+        score = 0;
+        life = 3;
+    }
+
+    function Foo() {
+        var count = 0;
+        this.getCount = function () {
+            return count;
+        }
+        this.setCount = function (val) {
+            count = val;
+        }
+        this.add = function () {
+            count++;
+        }
+    }
+    var a = new Foo();
+    a.count
+    a.getCount();
+    a.setCount(6);
+    a.getCount();
+    a.add();
+    a.getCount();
+
+</script>
+
+<style>
+    .jumbotron{
+        margin-top: 30px;
+    }
+    .button-group{
+        text-align: justify;
+        text-align-last: justify;
+    }
+    #word{
+        transition-property: all;
+        transition-duration: 1s;
+    }
+    #triangle{
+        width: 0px;
+        height: 0px;
+        border-top: solid 10px transparent;
+        border-left: solid 10px transparent;
+        border-right: solid 10px green;
+    }
+
+</style>
+</html>

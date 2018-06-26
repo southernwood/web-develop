@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular-route.js"></script>
+
+</head>
+<body>
+<div ng-app='myApp' ng-controller="MainCtrl">
+    <ul>
+        <li><a href="#!a">click a</a></li>
+        <li><a href="#!b">click b</a></li>
+    </ul>
+    <div ng-view></div>
+</div>
+
+<script>
+    angular.module("myApp", ["ngRoute"])
+        .controller('aController', function ($scope, $route) {
+            $scope.hello = 'Hello, this is a!';
+        })
+        .controller('bController', function ($scope) {
+            $scope.hello = "hello, this is #b, delaying 1s!";
+        })
+        .controller('MainCtrl', function ($scope, $location) {
+            $scope.$on('$viewContentLoaded', function () {
+                console.log('ng-view content loaded!');
+            });
+
+            $scope.$on('$routeChangeStart', function (event, next, current) {
+                console.log('route change start!');
+            })
+        })
+        .config(function ($routeProvider, $locationProvider) {
+            $routeProvider
+                .when('/a',{
+                    templateUrl: 'a.html',
+                    controller: 'aController'
+                })
+                .when('/b', {
+                    templateUrl: 'b.html',
+                    controller: 'bController',
+                    resolve:{
+                        delay: function ($q, $timeout) {
+                            var delay = $q.defer();
+                            $timeout(delay.resolve, 3000);
+                            return delay.promise;
+                        }
+                    }
+                })
+        })
+
+</script>
+
+</body>
+</html>

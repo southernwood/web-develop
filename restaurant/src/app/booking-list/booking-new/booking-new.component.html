@@ -1,0 +1,101 @@
+
+  <div class="main">
+    <div class="title">
+      <img src="../../../assets/img/1457048859937.jpg" alt="title">
+    </div>
+    <div class="book-form panel panel-default">
+      <form class="form-horizontal" [formGroup]="bookingForm" (ngSubmit)="onSubmit()">
+        <div class="row" *ngIf="timeSlots && infoTips">
+          <div class="col-lg-12 alert alert-warning">
+            <h5>{{infoTips}}</h5>
+            <ul>
+              <li *ngFor="let time of timeSlots">
+                {{time.startTime | date: 'shortTime'}} - {{time.endTime | date: 'shortTime'}}
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="form-group"
+               [ngClass]="{'has-error':!bookingForm.controls['name'].valid
+    &&bookingForm.controls['name'].touched}">
+            <label for="name" class="control-label col-lg-3">Name</label>
+            <div class="col-lg-9">
+              <input  type="text"
+                      class="form-control"
+                      id="name"
+                      formControlName="name"
+                      placeholder="Emma Watson"/>
+            </div>
+          </div>
+          <div  class="form-group"
+                [ngClass]="{'has-error':!bookingForm.controls['time'].valid
+         &&bookingForm.controls['time'].touched}">
+            <label for="time" class="control-label col-lg-3">When</label>
+            <div class="col-lg-9">
+              <input type="datetime-local"
+                     class="form-control"
+                     id="time"
+                     formControlName="time"/>
+            </div>
+          </div>
+
+          <div *ngIf="bookingForm.controls['time'].errors &&
+        bookingForm.controls['time'].errors.validateTime"
+               class="alert alert-danger">
+            {{bookingForm.controls['time'].errors.validateTime.error}}
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="form-group"
+               [ngClass]="{'has-error':!bookingForm.controls['size'].valid
+         &&bookingForm.controls['size'].touched}">
+            <label for="size" class="control-label col-lg-3">How many</label>
+            <div class="col-lg-9">
+              <input type="number"
+                     class="form-control"
+                     id="size"
+                     formControlName="size"
+                     placeholder="2"/>
+            </div>
+          </div>
+          <div class="form-group"
+               [ngClass]="{'has-error':!bookingForm.controls['telephone'].valid
+         &&bookingForm.controls['telephone'].touched}">
+            <label for="telephone" class="control-label col-lg-3">Telephone</label>
+            <div class="col-lg-9">
+              <input type="tel"
+                     class="form-control"
+                     id="telephone"
+                     formControlName="telephone"
+                     placeholder="Telephone"/>
+            </div>
+          </div>
+          <div *ngIf="bookingForm.controls['telephone'].errors &&
+      bookingForm.controls['telephone'].touched"
+               class="alert alert-danger">
+            please input a valid telephone number
+          </div>
+        </div>
+
+        <div class="book-form-footer">
+          <span *ngIf="!editMode">
+            <button type="submit" class="btn btn-success" [disabled]="!bookingForm.valid">
+              Booking
+            </button>
+            <button class="btn btn-danger" (click)="onCancel()">
+            Cancel
+            </button>
+          </span>
+          <span *ngIf="editMode">
+            <button type="submit" class="btn btn-warning" [disabled]="!bookingForm.valid">
+              Update
+            </button>
+            <button class="btn btn-danger" (click)="onCancel()">
+              Cancel
+            </button>
+          </span>
+        </div>
+      </form>
+    </div>
+  </div>

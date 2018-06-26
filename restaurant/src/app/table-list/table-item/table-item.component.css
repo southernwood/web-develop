@@ -1,0 +1,78 @@
+.item{
+  background: url(logo.png) no-repeat center;
+  background-size: 250px;
+  width: 250px;
+  height: 200px;
+  border: 5px dotted transparent;
+  margin-top: 30px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+  border-radius: 5px;
+}
+.item:hover{
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+#table-id{
+  text-align: center;
+  color: rgb(207, 135, 53);
+  margin-top: 17%;
+  font-size: larger;
+  font-family: 'Abril Fatface', cursive;
+}
+#table-name{
+  font-family: 'Cookie', cursive;
+  cursor: pointer;
+  font-size: 2.3em;
+  padding-top: 5px;
+  text-align: center;
+}
+#table-name:hover{
+  color: rgb(207, 135, 53);
+}
+h1, h2{
+  font-family: 'Abril Fatface', cursive;
+  margin-bottom: 30px;
+}
+.item-reserved {
+  color: rgb(207, 135, 53);
+}
+#table-banner{
+  /*background: rgb(207, 135, 53);*/
+  background-color: rgb(92, 39, 12);
+  cursor: pointer;
+  opacity: 0.7;
+  color: white;
+  font-size: 50px;
+  font-family: 'Lato', cursive;
+  text-align: center;
+  line-height: 100%;
+  vertical-align: middle;
+  position: absolute;
+  -webkit-transform: rotate(-10deg);
+  -moz-transform: rotate(-10deg);
+  -o-transform: rotate(-10deg);
+  top: 45%;
+  left:-5px;
+  height: 25%;
+  width: 280px;
+  border-radius: 5px;
+}
+#time-table{
+  background-color: rgb(92, 39, 12);
+  opacity: 0.9;
+  width: 250px;
+  height: 200px;
+  position: absolute;
+  top: 30px;
+  color: white;
+  text-align: center;
+  vertical-align: middle;
+  display: flex;
+  align-items: center;
+  align-content: space-around;
+  border-radius: 5px;
+}
+#time-table ul li{
+  list-style-type: none;
+
+}

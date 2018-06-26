@@ -1,0 +1,16 @@
+[
+  {
+    "item": "wash the dishes",
+    "flag": false
+  },
+  {
+    "item": "learn AngularJs",
+    "flag": true
+  },
+  { "item": "learn React",
+    "flag": false},
+  {"item": "learn AngularJs 2",
+    "flag": false},
+  {"item": "book the tickets",
+    "flag": false}
+]

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    //dependency injection
+    var A = function () {
+        this.getName = function () {
+            return 'Jerry';
+        }
+    }
+    var a = new A;
+    var B = function (a) {
+        this.a = a;
+        document.write(a.getName());
+    }
+
+    var b = new B(a);
+
+    //js has two ways to do inject:
+    // 1) pass a into b
+    // 2) a is global variable
+
+</script>
+
+</html>

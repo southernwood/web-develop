@@ -1,0 +1,42 @@
+CREATE TABLE students(
+id MEDIUMINT UNSIGNED NOT NULL,
+first_name VARCHAR(50) NOT NULL,
+last_name VARCHAR(50) NOT NULL,
+email_address VARCHAR(50) NOT NULL,
+PRIMARY KEY (id)
+)engine = INNODB DEFAULT character SET = utf8 COLLATE = utf8_general_ci;
+
+
+CREATE TABLE departments(
+school_code ENUM('L','B','A','F','E','T','I','W','S','U','M') NOT NULL,
+dept_id SMALLINT UNSIGNED NOT NULL,
+abbreviation VARCHAR(9),
+dept_name VARCHAR(200),
+PRIMARY KEY (school_code,dept_id)
+)engine = INNODB DEFAULT character SET = utf8 COLLATE = utf8_general_ci;
+
+create table courses(
+school_code ENUM('L','B','A','F','E','T','I','W','S','U','M') NOT NULL,
+dept_id SMALLINT UNSIGNED NOT NULL,
+course_code CHAR(5) NOT NULL,
+name VARCHAR(150),
+PRIMARY KEY (course_code),
+FOREIGN KEY (school_code,dept_id) REFERENCES departments (school_code,dept_id)
+)engine = INNODB DEFAULT character SET = utf8 COLLATE = utf8_general_ci;
+
+create table grades(
+pk_grade_ID INT UNSIGNED NOT NULL AUTO_INCREMENT,
+student_id MEDIUMINT UNSIGNED NOT NULL,
+grade DECIMAL(5, 2),
+school_code ENUM('L','B','A','F','E','T','I','W','S','U','M'),
+dept_id SMALLINT UNSIGNED,
+course_code CHAR(5),
+PRIMARY KEY (pk_grade_ID),
+FOREIGN KEY(student_id) REFERENCES students(id),
+FOREIGN KEY(course_code) REFERENCES courses(course_code)
+)engine = INNODB DEFAULT character SET = utf8 COLLATE = utf8_general_ci;
+
+LOAD DATA LOCAL INFILE '/home/sensen/module3/students_data.txt' INTO TABLE students;
+LOAD DATA LOCAL INFILE '/home/sensen/module3/departments_data.txt' INTO TABLE departments;
+LOAD DATA LOCAL INFILE '/home/sensen/module3/courses.txt' INTO TABLE courses;
+LOAD DATA LOCAL INFILE '/home/sensen/module3/grades_data.txt' INTO TABLE grades;

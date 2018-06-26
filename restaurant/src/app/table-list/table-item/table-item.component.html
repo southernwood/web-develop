@@ -1,0 +1,72 @@
+<div class="item" [ngClass]="{'item-reserved' : reserved}">
+<div id="table-id">
+  {{table.id | roman}}
+</div>
+  <div id="table-name"
+       (click)="showDialog = !showDialog"
+       (mousemove)="onOver()"
+       (mouseleave)="onLeave()"
+  >
+    {{name}}
+  </div>
+  <div *ngIf="reserved && !showTable" id="table-banner" (mousemove)="showTable = true">
+    reserved
+  </div>
+</div>
+
+<div id="time-table" *ngIf="showTable" (mouseleave)="showTable=false">
+  <ul>
+    <li *ngFor="let booking of reserveList">
+      ☕ {{booking.startTime |date:'shortTime' }} - {{booking.endTime | date:'shortTime'}}<br>
+      {{booking.name}}
+    </li>
+  </ul>
+</div>
+
+<app-modal [(visible)]="showDialog" [width]="750" [height]="200" >
+  <div *ngIf="showForm">
+    <h1>Quick reservation for table {{table.id}}</h1>
+    <form class="form-inline" (ngSubmit)="onSubmit()">
+      <label class="sr-only" for="username">Name</label>
+      <input type="text" class="form-control" id="username"
+             name ="username"
+             placeholder="Harry Potter"
+             [value]="username"
+             [(ngModel)] = 'username'
+      >
+      <label class="sr-only" for="telephone">telephone</label>
+      <div class="input-group">
+        <input type="tel"
+               class="form-control"
+               id="telephone"
+               name="telephone"
+               placeholder="telephone"
+               [value]="telephone"
+               [(ngModel)]  = "telephone"
+        >
+      </div>
+      <div class="input-group">
+        <input type="datetime-local"
+               class="form-control"
+               id="time"
+               name="time"
+               [value]="reserveTime"
+               [(ngModel)] = "reserveTime"
+               [disabled]="true"
+        >
+      </div>
+      <button type="submit"
+              class="btn btn-primary"
+              [disabled]="!username || !telephone">
+        Submit
+      </button>
+    </form>
+  </div>
+  <div *ngIf="key" class="successful text-center">
+    <h2>Book table {{this.table.id}} in {{this.name}} area for {{this.username}}</h2>
+    <a  class="btn btn-success" [routerLink]="['/bookings', key]">
+      {{key.substring(2)}}
+    </a>
+  </div>
+
+</app-modal>

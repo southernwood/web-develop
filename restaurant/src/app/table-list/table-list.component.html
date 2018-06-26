@@ -1,0 +1,25 @@
+<div class="main">
+  <div class="container">
+    <form class="form-inline">
+      <label for="time">Choose the time </label>
+      <input class="picker-input form-control"
+             id="time" name="time"
+             class="picker-input"
+             [value]="momentVariable|date:'medium'"
+             [(ngModel)]="momentVariable"
+             dateTimePicker
+             [mode]="'dropdown'"
+             (onChange)="onChange()">
+      <i class="fa fa-calendar" id="icon" aria-hidden="true"></i>
+    </form>
+    <div class="container">
+      <div class="row">
+        <div *ngFor="let table of tables" class="col-lg-3 col-sm-6 col-md-4">
+          <app-table-item [table]="table" [timeChange]="timeChange" [defaultTime]="momentVariable">
+          </app-table-item>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

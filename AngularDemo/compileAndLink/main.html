@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+    <script
+            src="http://code.jquery.com/jquery-3.2.1.min.js"
+            integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+            crossorigin="anonymous"></script>
+
+</head>
+<body>
+<div ng-app="app">
+    <div ng-controller="msg">
+        <div message text="first">
+            <div message text="..second">
+                <div message text="....third">
+                    <div message text="......forth">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+    angular.module('app', [])
+        .controller('msg', ['$scope', function ($scope) {
+        }])
+        .directive('message', function () {
+            return {
+                compile: function (tEle, tAtt) {
+                    console.log(tAtt.text + ' in complie phase')
+
+                    return {
+                        pre: function (scope, iEle, iAtt) {
+                            console.log(iAtt.text + ' in pre-linking phase')
+                        },
+                        post: function (scope, iEle, iArr) {
+                            console.log(iArr.text + " in post-linking phase")
+                        }
+                    }
+                },
+                controller: function ($scope, $element, $attrs) {
+                    console.log($attrs.text + ' in controller');
+                }
+            }
+        })
+</script>
+</body>
+</html>

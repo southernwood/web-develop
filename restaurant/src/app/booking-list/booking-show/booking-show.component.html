@@ -1,0 +1,80 @@
+<div class="container">
+  <div class="row">
+    <div class="success box col-lg-4 col-md-5 col-sm-12" *ngIf="successMode">
+      <div class="box-content">
+        <h1>Congratulations!</h1>
+        <br>
+        <p>you have successfully reserve a table</p>
+        <p>your confirmation code is</p>
+        <h4 class="btn btn-success tooltip-bottom"
+            data-tooltip="Copy to Click"
+            (click)="copyTextToClipboard(key.substring(2))">
+          {{this.key.substring(2)}}
+        </h4>
+        <hr>
+        <h1>Bon appétit</h1>
+      </div>
+    </div>
+
+    <div class="success  box col-lg-4 col-md-5 col-sm-12" *ngIf="updateMode">
+      <div class="box-content">
+        <h2>Congratulations!</h2>
+        <br>
+        <h3>you have successfully</h3>
+          <h2>UPDATE </h2>
+        <h3>your reservation</h3>
+      </div>
+    </div>
+
+    <div class="detail col-lg-4 col-md-5 col-sm-12" *ngIf="booking">
+      <!--<img src="../../../assets/img/header.jpg" id="header">-->
+      <div class="description">
+        <h1>{{booking.name}}</h1>
+        <p>Reserve time: </p>
+        <p>{{booking.startTime | date:'medium'}}</p>
+        <p>Table Id:</p>
+        <p>{{booking.tableId | number: '3.0'}}</p>
+        <p>Telephone:</p>
+        <p>{{booking.telephone}}</p>
+        <p>Confirmation Code:</p>
+        <p>{{key.substring(2)}}</p>
+        <p id="bottom" class="center-block">
+          <a id="edit" (click)="onEdit()">edit</a>
+          <a id="delete" (click)="onShowDialog()">delete</a>
+          <a id="cancel" (click)="onCancel()">Cancel</a>
+        </p>
+      </div>
+      <!--<img src="../../../assets/img/footer.jpg" id="footer">-->
+    </div>
+    <div class="menu col col-lg-4 col-md-6 col-xs-12" *ngIf="booking&&!successMode&&!updateMode">
+      <app-menu></app-menu>
+    </div>
+
+    <div *ngIf="!booking && searchMode" class="failed">
+      <h3><i class="fa fa-frown-o" aria-hidden="true"></i> Oops! </h3>
+      we can't find reservation for <span>{{this.key.substring(2)}}</span>, please confirm your code
+    </div>
+  </div>
+</div>
+
+<div class="confirm">
+  <app-modal [(visible)] = 'showDialog' [width]="400" [height]="300">
+    <div *ngIf="booking">
+      <h1 style="color: #d9534f">Remove Reservation</h1>
+      <hr>
+      <h4>Do you want to delete your reservation?</h4>
+      <div class="text-center">
+        <p>{{booking.name}}</p>
+        <p>{{booking.time | date:'medium'}}</p>
+        <p>{{key.substring(2)}}</p>
+      </div>
+      <div class="col-12-xs text-center col-md">
+        <button class="btn btn-danger btn-md"
+                (click)="onDelete(this.key)">
+          Delete
+        </button>
+        <button class="btn btn-default btn-md" (click)="showDialog=false">Cancel</button>
+      </div>
+    </div>
+  </app-modal>
+</div>

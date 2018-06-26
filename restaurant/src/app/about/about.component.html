@@ -1,0 +1,87 @@
+<div class="main">
+  <div class="paper">
+    <div class="button-header" >
+      <div [style.visibility]="!this.authenticated? 'hidden':'visible'">
+      <span class="icon" href=""  (click)="onEdit()" *ngIf="!editMode">
+        <img src="../../assets/icons/icons8-Edit%20File-64.png" title="Edit" width="32" height="32">
+      </span>
+        <span class="icon" (click)="onSave()" *ngIf="editMode">
+        <img src="../../assets/icons/icons8-Save%20as-64.png" title="Edit" width="32" height="32">
+      </span>
+      </div>
+    </div>
+    <div class="info-form">
+      <img src="../../assets/img/about/4a02ced7b43781f1eed88212236027eeda33dda7_hq.jpg" alt="front"
+           width="200"  class="align-right">
+      <div class="info-form-header" [style.visibility]="loading? 'hidden':'visible'">
+        <h1>
+          <input type="text"
+                 [(ngModel)]="restaurant.name"
+                 name="name"
+                 [value]="restaurant.name"
+                 [disabled]="!editMode">
+        </h1>
+        <h3>
+          <input type="text"
+                 [(ngModel)]="restaurant.owners"
+                 name="owners"
+                 [value]="restaurant.owners"
+                 [disabled]="!editMode">
+        </h3>
+        <h3>
+          <input type="tel"
+                 [value]="restaurant.telephone"
+                 [(ngModel)]="restaurant.telephone"
+                 name="telephone"
+                 [disabled]="!editMode">
+        </h3>
+        <h3>
+      <textarea  [value]="restaurant.locations"
+                 [(ngModel)]="restaurant.locations"
+                 name="locations"
+                 [disabled] ="!editMode">
+
+      </textarea>
+        </h3>
+      </div>
+      <div class="loading" *ngIf="loading">
+        <app-loading></app-loading>
+      </div>
+    </div>
+    <div class="site-wrap">
+
+
+      <p>Consectetur adipisicing elit. Tempore tempora rerum, est autem cupiditate, corporis a qui libero ipsum delectus quidem dolor at nulla, adipisci veniam in reiciendis aut asmagni, ut, dignissimos.</p>
+
+      <p>Lorem ipsum cupiditate, corporis a qui libero ipsum is quod quas laborum nam! Fuga ad tempora in aspernatur pariatur fugit quibusdam dolores sunt esse magni, ut, dignissimos.</p>
+      <p>Adipisicing elit. Tempore tempora rerum..</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore tempora rerum, est autem cupiditate, corporis a qui libero ipsum delectus quidem dom nam! Fuga ad tempora in aspernatur pariatur fugit quibusdam dolores sunt esse magni, ut, dignissimos.</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore tempora rerum, est autem cupiditate, corporis a qui libero ipsum delectus quidem dnissimos.</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore tempora rerum, est autem cupiditate, corporis a qui libero ipsum delectus quidem dossimos.</p>
+      <img class="align-left slide-in" src="../../assets/img/about/5055de8203e79c212feb5f75221de4c8.jpg" width="400" >
+
+
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptates, deserunt facilis et iste corrupti omnis tenetur est. Iste ut est dicta dolor itaque adipisci, dolorum minima, veritatis earum provident error molestias. Ratione magnne. Culpa, dolorum reprehenderit harum ab voluptas fuga, nisi eligendi natus maiores illum quas quos et aperiam aut doloremque optio maxime fugiat doloribus. Eum dolorum expedita quam, nesciunt</p>
+
+      <img src="../../assets/img/about/harry-potter-cafe-food.jpg" width="400" class="align-right slide-in">
+
+      <p> at provident praesentium atque quas rerum optio dignissimos repudiandae ullam illum quibusdam. Vel ad error quibusdam, illo ex totam placeat. Quos excepturi fuga, molestiae ea quisquam minus, ratione dicta consectetur officia omnabo velit optio esse aperiam similique, voluptatem cum, maiores ipsa tempore. Reiciendis sed culpa atque inventore, nam ullam enim expedita consectetur id velit iusto alias vitae explicabo nemo neque odio reprehenderit soluta sint eaque. Aperiam, qui ut tenetur, voluptate doloremque officiis dicta quaerat voluptatem rerum natus magni. Eum amet autem dolor ullam.</p>
+
+      <img src="../../assets/img/about/grilled-chicken-quinoa-salad.jpg" width="300" class="align-left slide-in">
+
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio maiores adipisci quibusdam repudiandae dolor vero placeat esse sit! Quibusdam saepe aperiam explicabo placeat optio, consequuntur nihil voluptatibus expedita quia vero perferendis, deserunt et incidunt eveniet
+        <img src="../../assets/img/about/39a47492912_ginal.jpg" width="200" class="align-right slide-in">
+        temporibus doloremque possimus facilis. Possimus labore, officia dolore! Eaque ratione saepe, alias harum laboriosam deserunt laudantium blanditiis eum explicabo placeat reiciendis labore iste sint. Consectetur expedita dignissimomque culpa reiciendis tempore excepturi. Enim nostrum fugit itaque vel corporis ullam sed tenetur ipsa qui rem quam error sint, libero. Laboriosam rem, ratione. Autem blanditiis</p>
+
+
+      <p>laborum neque repudiandae quam, cumque, voluptate veritatis itaque, placeat veniam ad nisi. Expedita, laborum reprehenderit ratione soluta velit natus, odit mollitia. Corporis rerum minima fugiat in nostrum. Assumenda natus cupiditate hic quidem ex, quas, amet ipsum esse dolore facilis beatae maxime qui inventore, iste? Maiores di. Voluptatem eum error voluptas porro officiis, amet! Molestias, fugit, ut! Tempore non magnam, amet, facere ducimus accusantium eos veritatis neque.</p>
+
+      <img src="../../assets/img/about/img22019_03012017014058.jpeg" width="400" class="align-right slide-in">
+
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio maiores adipisci quibusdam repudiandae dolor vero placeat esse sit! Quibusdam saepe aperiam explicabo placeat optio, consequuntur nihil voluptatibus expedita quia veem. Delectus impedit quidem laborum, fugit vel neque quo, ipsam, quasi aspernatur quas odio nihil? Veniam amet reiciendis blanditiis quis reprehenderit repudiandae neque, ab ducimus, odit excepturi voluptate saepe ipsam. Voluptatem eum error voluptas porro officiis, amet! Molestias, fugit, ut! Tempore non magnam, amet, facere ducimus accusantium eos veritatis neque.</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio maiores adipisci quibusdam repudiandae dolor vero placeat esse sit! Quibusdam saepe aperiam explicabo placeat optio, consequuntur nihil voluptatibus expedita quia repellendus quia facilis iusto dignissimos nam? Tenetur fugit quos autem nihil, perspiciatis expe saepe ipsam. Voluptatem eum error voluptas porro officiis, amet! Molestias, fugit, ut! Tempore non magnam, amet, facere ducimus accusantium eos veritatis neque.</p>
+    </div>
+
+  </div>
+</div>
+

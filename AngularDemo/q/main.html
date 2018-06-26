@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular-route.js"></script>
+</head>
+<body ng-app="myApp">
+<div ng-view>
+</div>
+<script>
+    angular.module('myApp', ['ngRoute'])
+        .config(function ($routeProvider) {
+            $routeProvider
+                .when('/', {
+                    templateUrl: 'a.html',
+                    controller: 'firstController'
+                })
+
+        })
+        .controller('firstController', function ($scope, $q) {
+            var defer = $q.defer();
+            defer.promise.then(function (food) {
+                alert("You can eat my "+ food);
+                return ("salad")
+            })
+                .then(function (food) {
+                    alert("And my "+ food);
+                    return ("ice cream")
+                })
+                .then(function (food) {
+                    alert("and my "+ food);
+                });
+            defer.resolve('pizza');
+            $scope.model = {
+                message: 'this is my app'
+            }
+        })
+</script>
+</body>
+</html>

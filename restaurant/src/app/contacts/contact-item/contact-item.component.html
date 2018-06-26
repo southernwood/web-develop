@@ -1,0 +1,24 @@
+
+<div class="border">
+  <img src="../../../assets/img/border.png" height="175"/>
+  <img src="../../../assets/img/border.png" height="175"/>
+  <img src="../../../assets/img/border.png" height="175"/>
+</div>
+
+<div class="pricingTable">
+  <div class="pricingTable-header">
+    <span class="price-value">
+      {{contact.name}}
+      <span class="mo">
+        {{contact.telephone|telephone}}
+      </span>
+    </span>
+  </div>
+  <div class="pricingContent">
+    <ul>
+      <li *ngFor="let booking of contact.bookings | sortByTime">
+        {{booking.time|date: 'medium'}} ----- {{booking.size}} people
+      </li>
+    </ul>
+  </div>
+</div>

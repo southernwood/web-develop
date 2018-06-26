@@ -1,0 +1,44 @@
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+       <a routerLink="/" style="cursor: pointer;" class="navbar-brand">Magic Café</a>
+    </div>
+
+    <form class="navbar-form navbar-right search-scope" role="search">
+      <div class="form-group search">
+        <input type="text" class="form-control" name="search" [(ngModel)]="key" style="width: 200px" placeholder="Search your reservation">
+        <button type="submit" (click)='onSubmit()' class="btn"><i class="fa fa-search"></i>
+        </button>
+      </div>
+    </form>
+    <div class="collapse navbar-collapse bs-dark">
+      <ul class="nav navbar-nav">
+        <li routerLinkActive="active"><a href="#" routerLink="/about">About us</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <ng-template [ngIf]="!authService.isAuthenticated()">
+          <li><a routerLink="/signup">Owner Register</a></li>
+          <li><a routerLink="/login">Login</a></li>
+        </ng-template>
+        <ng-template [ngIf]="authService.isAuthenticated()" >
+          <li class="dropdown" appDropdown>
+            <a style="cursor: pointer;" class="dropdown-toggle" role="button">Manage <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li routerLinkActive="active"><a href="#" routerLink="/bookings">Booking List</a></li>
+              <li routerLinkActive="active"><a href="#" routerLink="/tables">Tables</a></li>
+              <li routerLinkActive="active"><a href="#" routerLink="/contacts">Contacts</a></li>
+            </ul>
+          </li>
+          <li><a style="cursor: pointer;" (click)="onLogOut()" >Log Out</a></li>
+        </ng-template>
+      </ul>
+    </div>
+  </div>
+</nav>
+<div class="logo">
+  <a routerLink="/main">
+    <img  class="logo" src="../../assets/img/Hogwarts_Logo1.png" alt="Logo">
+  </a>
+
+</div>
+

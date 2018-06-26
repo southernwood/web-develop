@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+          crossorigin="anonymous">
+</head>
+<body>
+<div ng-app="myApp">
+    <form name="myForm" class="container form-horizontal" ng-controller="MainCtrl">
+        <div class="form-group" ng-class="{'has-error': myForm.username.$dirty && myForm.username.$invalid}">
+            <label class="col-sm-2 control-label">UserName</label>
+            <div class="col-sm-10">
+                <input type="text" name="username" class="form-control" placeholder="UserName"
+                ng-model = "data.username" ng-required="true" 
+                       ng-minlength="6" ng-maxlength="12" ng-pattern="/^[a-zA-Z]{1}/">
+                <div ng-show="myForm.username.$error.maxlength" class="alert alert-danger help-block">
+                    UserName's length cannot over 12
+                </div>
+                <div ng-show="myForm.username.$error.minlength" class="alert alert-danger help-block">
+                    UserName's length cannot less than 6
+                </div>
+                <div ng-show="myForm.username.$error.pattern" class="alert alert-danger help-block">
+                    UserName must start in Letter
+                </div>
+            </div>
+        </div>
+        <div class="form-group" ng-class="{'has-error': myForm.password.$dirty && myForm.password.$invalid}">
+            <label class="col-sm-2 control-label">Password</label>
+            <div class="col-sm-10">
+                <input type="password" name="password" class="form-control" placeholder="Password"
+                       ng-model = "data.password" ng-required="true" ng-minlength="4">
+                <div ng-show="myForm.password.$error.minlength" class="alert alert-danger help-block">
+                    password's length cannot less than 4
+                </div>
+            </div>
+        </div>
+        <div class="form-group" ng-class="{'has-error': myForm.confrim.$dirty && myForm.confrim.$invalid}">
+            <label class="col-sm-2 control-label">Confirm Password</label>
+            <div class="col-sm-10">
+                <input type="password" name="confrim" class="form-control" placeholder="Confrim Password"
+                       ng-model="data.confirm" ng-required="true" ng-pattern="data.password">
+                <div ng-show="myForm.confrim.$error.pattern" class="alert alert-danger help-block">
+                    password must be the same
+                </div>
+            </div>
+        </div>
+        <div class="form-group" ng-class="{'has-error': myForm.email.$dirty && myForm.email.$invalid}">
+            <label class="col-sm-2 control-label">Email</label>
+            <div class="col-sm-10">
+                <input type="email" name="email" class="form-control" placeholder="Email"
+                       ng-model="data.email" ng-required="true"
+                       ng-pattern="/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/">
+                <div ng-show="myForm.email.$error.pattern" class="alert alert-danger help-block">
+                    email format wrong
+                </div>
+            </div>
+        </div>
+        <div class="form-group" ng-class="{'has-error': myForm.url.$dirty && myForm.url.$invalid}">
+            <label class="col-sm-2 control-label">Url</label>
+            <div class="col-sm-10">
+                <input type="text" name="url" class="form-control" placeholder="http:://"
+                       ng-model="data.url" ng-required="true"
+                       ng-pattern="/^((http[s]?|ftp):\/)?\/?([^:\/\s]+)((\/\w+)*\/)([\w\-\.]+[^#?\s]+)(.*)?(#[\w\-]+)?$/">
+                <div ng-show="myForm.url.$error.pattern" class="alert alert-danger help-block">
+                    url format wrong
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Born place</label>
+            <div class="col-sm-10">
+                <select ng-options="location as location.state for location in locations track by location.id"
+                        ng-model="data.selectedState"
+                       ></select>
+                <select ng-options="city as city.city for city in data.selectedState.cities"
+                        ng-model="data.selectedCity"></select>
+                <select ng-options="country for country in data.selectedCity.counties"
+                        ng-model="data.selectedCountry"></select>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Register</button>
+        <button class="btn btn-danger" ng-click="clear()">Reset</button>
+
+    </form>
+
+
+</div>
+
+<script>
+    angular.module('myApp', [])
+        .controller('MainCtrl', function ($scope) {
+            $scope.locations = [{
+                id: 1,
+                state: 'New Jersey',
+                cities: [
+                    {
+                        city: 'Somerset',
+                        counties: [
+                            'Bridgewater',
+                            'Somerset- A',
+                            'somerset- B'
+                        ]
+                    },
+                    {
+                        city: 'Edison',
+                        counties: [
+                            'Edison - a',
+                            'Edison - b',
+                            'Edison - c'
+                        ]
+                    }
+                ]
+            }, {
+                id: 2,
+                state: 'New York',
+                cities: [
+                    {
+                        city: 'New York',
+                        counties: [
+                            'central Park',
+                            'New York - A',
+                            'New york - B'
+                        ]
+                    }
+                ]
+            },
+                {
+                    id: 1,
+                    state: 'Missouri',
+                    cities: [
+                        {
+                            city: 'St. Louis',
+                            counties: [
+                                'university city',
+                            ]
+                        },
+                        {
+                            city: 'another city in Missorui'
+                        }
+                    ]
+                }];
+            $scope.onChange = ()=>{
+                console.log($scope.selected);
+            }
+            $scope.clear = ()=>{
+                $scope.data = {};
+                $scope.myForm.$setPristine();
+            }
+        })
+</script>
+</body>
+</html>

@@ -1,0 +1,9 @@
+body{
+  background: gray;
+}
+.container{
+  width: 50%;
+  margin-left: 25%;
+  position: absolute;
+  z-index: 12;
+}

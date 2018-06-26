@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>number memory test</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <h1>Your Number is </h1>
+    <h2 id="number"></h2>
+    <button class="btn btn-primary">start game</button>
+</div>
+
+</body>
+
+<script>
+    const numberBlock = document.getElementById('number');
+    let changeNumber = function (len) {
+        let curNumber = "";
+        for(let i = 0; i < len; ++i){
+            curNumber += Math.floor(Math.random()*10);
+        }
+        numberBlock.textContent = curNumber;
+        setTimeout(()=>{
+            numberBlock.textContent = null;
+            const input = document.createElement('input');
+            numberBlock.appendChild(input);
+            input.focus();
+            input.addEventListener('keydown', (event)=>{
+                if(event.keyCode === 13){
+                    let ans = input.value;
+                    if (ans === curNumber){
+                        numberBlock.innerHTML = "level: " + len;
+                        changeNumber(len+1);
+                    }else{
+                        numberBlock.innerHTML = `<h3>correct number is ${curNumber}</h3>
+<h3>your ans is ${ans}</h3>level:  ${len}`;
+                        parent.appendChild(button);
+                    }
+                    input.remove();
+                }
+            })
+
+        }, 5000);
+    }
+    const button = document.querySelector('button');
+    button.addEventListener('click', startGame);
+    function startGame() {
+        let len = 1;
+        changeNumber(len);
+        button.remove();
+    }
+
+</script>
+</html>
